@@ -1,20 +1,15 @@
----
-name: Submodule Updates
-
+name: Dispatch Update Submodule
 on:
-  push
-
+  push:
+    branches:
+      - main
 jobs:
-  build:
-    name: Submodule update
+  dispatch:
     runs-on: ubuntu-latest
-    env:
-      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - name: run action
-        id: run_action
-        uses: PaulRitter/github-action-create-commit-parent-submodule@v2.0
+      - name: Dispatch update to Git Blog Project
+        uses: peter-evans/repository-dispatch@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          parent_repository: camillegiuliano/TestParent
-          parent_branch: main
+          token: ${{ secrets.PAT }}
+          repository: camillegiuliano/ParentTest
+          event-type: update-submodule
