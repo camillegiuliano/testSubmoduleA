@@ -1,4 +1,4 @@
-name: Dispatch Update Submodule
+name: Dispatch Update Submodules
 on:
   push:
     branches:
